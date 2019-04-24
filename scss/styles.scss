@@ -1,0 +1,122 @@
+@charset 'utf-8';
+
+@font-face {
+  font-family: 'iA Writer Duospace';
+  src: url('../assets/fonts/iawriterduospace-regular.eot');
+  src: url('../assets/fonts/iawriterduospace-regular.eot?#iefix') format('embedded-opentype'),
+       url('../assets/fonts/iawriterduospace-regular.woff2') format('woff2'),
+       url('../assets/fonts/iawriterduospace-regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Gilbert';
+  src: url('../assets/fonts/gilbert-bold.otf')  format('opentype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+$base-font: 'iA Writer Duospace', Courier, monospace;
+$special-font: 'Gilbert', Arial, sans-serif;
+$main-colour: #1572b6;
+$light-txt: #fff;
+$inactive-colour: #eee;
+
+html {
+  box-sizing: border-box;
+  height: 100%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100%;
+  text-align: center;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 1fr auto;
+  font-family: $base-font;
+}
+
+section {
+  background-color: $main-colour;
+  color: $light-txt;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+kbd {
+  font-weight: normal;
+  font-size: 1.2em;
+  border: 1px solid;
+  border-radius: 0.3em;
+  padding: 0.2em 0.5em;
+}
+
+progress {
+  grid-column: span 2;
+  background-color: $inactive-colour;
+  border: 0;
+  width: 100%;
+  height: 2em;
+  display: none;
+}
+
+progress::-webkit-progress-bar {
+  background-color:$inactive-colour;
+}
+
+progress::-webkit-progress-value {
+  background: $main-colour;
+}
+
+progress::-moz-progress-bar {
+  background: $main-colour;
+}
+
+.digits {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.clock {
+  font-family: $special-font;
+  font-size: 75vh;
+  line-height: 0.75;
+}
+
+.label {
+  font-size: 3vw;
+  color: $main-colour;
+  text-align: center;
+}
+
+.docs {
+  grid-column: span 2;
+}
+
+.docs p {
+  font-size: 1em;
+  padding: 1em;
+}
+
+.mute {
+  filter: grayscale(1) brightness(1.5);
+}
+
+.input {
+  width: 50px;
+}
+
+.hidden {
+  display: none;
+}

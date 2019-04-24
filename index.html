@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Bey-timer</title>
+    <meta name="description" content="Countdown timer for speakers">
+    <meta name="author" content="Chen Hui Jing">
+
+    <link rel="stylesheet" href="styles.css">
+
+    <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+    <div class="digits">
+      <p class="clock info" id="minutes">05</p>
+      <p class="label">minutes</p>
+    </div>
+    <div class="digits">
+      <p class="clock info" id="seconds">00</p>
+      <p class="label">seconds</p>
+    </div>
+
+    <section class="docs" id="info">
+      <p id="edit">
+        Press <kbd>1</kbd> / <kbd>2</kbd> / <kbd>3</kbd> / <kbd>4</kbd> / <kbd>5</kbd> / <kbd>6</kbd> / <kbd>7</kbd> / <kbd>8</kbd> / <kbd>9</kbd> / <kbd>0</kbd> to edit time
+      </p>
+      <p>
+        Press
+        <span id="info-space"><kbd>spacebar</kbd> / <kbd>click</kbd></span>
+        <span id="info-tap" class="hidden"><kbd>tap</kbd></span> to play / pause
+      </p>
+      <p>
+        Press
+        <span id="info-esc"><kbd>esc</kbd> / <kbd>enter</kbd></span>
+        <span id="info-2tap" class="hidden"><kbd>double tap</kbd></span> to reset
+      </p>
+    </section>
+    
+    <progress value=0 max=100 id="progress"></progress>
+
+    <script src="scripts.js"></script>
+  </body>
+</html>
