@@ -1,13 +1,14 @@
 /* global FastClick, screenfull */
 (function() {
-  console.log("%c happy timing ;-)", "background: #f15b47; color: #fff");
+  console.log('%c happy timing ;-)', 'background: #f15b47; color: #fff');
 
   var play = false;
   var intervalID;
-  var minElement = document.getElementById("minutes");
-  var secElement = document.getElementById("seconds");
-  var infoElement = document.getElementById("info");
-  var progressElement = document.getElementById("progress");
+  var minElement = document.getElementById('minutes');
+  var secElement = document.getElementById('seconds');
+  var infoElement = document.getElementById('info');
+  var progressElement = document.getElementById('progress');
+  var no = document.getElementById('no');
   var minValue = sanitize(minElement.innerHTML);
   var secValue = sanitize(secElement.innerHTML);
   var minSecValues = [0, 5, 0, 0];
@@ -17,21 +18,21 @@
   var singleTap = false;
   var doubleTap = false;
   var configAscii = {
-    "48": "0",
-    "49": 1,
-    "50": 2,
-    "51": 3,
-    "52": 4,
-    "53": 5,
-    "54": 6,
-    "55": 7,
-    "56": 8,
-    "57": 9
+    '48': '0',
+    '49': 1,
+    '50': 2,
+    '51': 3,
+    '52': 4,
+    '53': 5,
+    '54': 6,
+    '55': 7,
+    '56': 8,
+    '57': 9
   };
-  var audio = new Audio('audio/crazy-in-love.mp3');
+  var audio = new Audio('assets/crazy-in-love.mp3');
 
-  minElement.addEventListener("blur", setTimer);
-  secElement.addEventListener("blur", setTimer);
+  minElement.addEventListener('blur', setTimer);
+  secElement.addEventListener('blur', setTimer);
 
   function setMinSecValues(pressedValue) {
     if (!pressedValue) return;
@@ -42,8 +43,8 @@
     minSecValues[2] = minSecValues[3];
     minSecValues[3] = pressedValue;
 
-    minElement.innerHTML = minSecValues[0] + "" + minSecValues[1];
-    secElement.innerHTML = minSecValues[2] + "" + minSecValues[3];
+    minElement.innerHTML = minSecValues[0] + '' + minSecValues[1];
+    secElement.innerHTML = minSecValues[2] + '' + minSecValues[3];
     setTimer();
     setColors(minSecValueCount);
     minSecValueCount = (minSecValueCount + 1) % 4;
@@ -51,8 +52,8 @@
 
   function setColors(count) {
     return count < 2
-      ? (minElement.className = "clock mute")
-      : (minElement.className = "clock info");
+      ? (minElement.className = 'clock mute')
+      : (minElement.className = 'clock info');
   }
 
   function setTimer() {
@@ -67,7 +68,7 @@
   }
 
   function make2Digits(input) {
-    return ("0" + input).slice(-2);
+    return ('0' + input).slice(-2);
   }
 
   function startCountdown(min, sec) {
@@ -82,8 +83,8 @@
           return;
         }
       }
-      minElement.innerHTML = ("0" + min).slice(-2);
-      secElement.innerHTML = ("0" + sec).slice(-2);
+      minElement.innerHTML = ('0' + min).slice(-2);
+      secElement.innerHTML = ('0' + sec).slice(-2);
 
       currentSeconds++;
       progressElement.value = Math.ceil(currentSeconds / totalSeconds * 100);
@@ -91,8 +92,9 @@
   }
 
   function endCountdown() {
-    infoElement.style.display = "block";
-    progressElement.style.display = "none";
+    infoElement.style.display = 'block';
+    progressElement.style.display = 'none';
+    no.style.display = 'flex';
   }
 
   function togglePausePlay() {
@@ -105,8 +107,8 @@
       secElement.innerHTML = make2Digits(sanitize(secElement.innerHTML));
       startCountdown(minElement.innerHTML, secElement.innerHTML);
       play = true;
-      infoElement.style.display = "none";
-      progressElement.style.display = "block";
+      infoElement.style.display = 'none';
+      progressElement.style.display = 'block';
       if (screenfull.enabled) screenfull.request();
     }
   }
@@ -116,15 +118,16 @@
     clearInterval(intervalID);
     minElement.innerHTML = make2Digits(minValue);
     secElement.innerHTML = make2Digits(secValue);
-    infoElement.style.display = "block";
-    progressElement.style.display = "none";
+    infoElement.style.display = 'block';
+    progressElement.style.display = 'none';
     progressElement.value = 0;
+    no.style.display = 'none';
     currentSeconds = 0;
   }
 
   function is_touch_device() {
     try {
-      document.createEvent("TouchEvent");
+      document.createEvent('TouchEvent');
       return true;
     } catch (e) {
       return false;
@@ -133,13 +136,13 @@
 
   function setIntructions() {
     if (is_touch_device()) {
-      var className = "hidden";
-      var nilClass = "";
+      var className = 'hidden';
+      var nilClass = '';
 
-      document.getElementById("info-space").className = className;
-      document.getElementById("info-esc").className = className;
-      document.getElementById("info-tap").className = nilClass;
-      document.getElementById("info-2tap").className = nilClass;
+      document.getElementById('info-space').className = className;
+      document.getElementById('info-esc').className = className;
+      document.getElementById('info-tap').className = nilClass;
+      document.getElementById('info-2tap').className = nilClass;
     }
   }
 
@@ -147,12 +150,12 @@
   setIntructions();
 
   if (is_touch_device()) {
-    document.getElementById("edit").innerHTML =
+    document.getElementById('edit').innerHTML =
       '<input type="number" placeholder="0500" class="input"> edit time';
 
-    if ("addEventListener" in document) {
+    if ('addEventListener' in document) {
       document.addEventListener(
-        "DOMContentLoaded",
+        'DOMContentLoaded',
         function() {
           FastClick.attach(document.body);
         },
@@ -161,7 +164,7 @@
     }
   }
 
-  window.addEventListener("keydown", function(e) {
+  window.addEventListener('keydown', function(e) {
     if (e.keyCode === 32) {
       // ASCII 32 is space
       e.preventDefault();
@@ -175,18 +178,18 @@
     }
   });
 
-  window.addEventListener("click", function(e) {
-    if (e.toElement && e.toElement.tagName !== "INPUT") {
+  window.addEventListener('click', function(e) {
+    if (e.toElement && e.toElement.tagName !== 'INPUT') {
       return togglePausePlay();
     }
 
-    if (e.target && e.target.tagName !== "INPUT") {
+    if (e.target && e.target.tagName !== 'INPUT') {
       return togglePausePlay();
     }
   });
 
-  window.addEventListener("touchend", function(e) {
-    if (e.srcElement.tagName !== "INPUT") {
+  window.addEventListener('touchend', function(e) {
+    if (e.srcElement.tagName !== 'INPUT') {
       if (!singleTap) {
         singleTap = true;
         setTimeout(function() {
