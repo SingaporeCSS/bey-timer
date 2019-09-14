@@ -27,10 +27,14 @@ html {
 body {
   height: 100%;
   text-align: center;
-  display: grid;
-  grid-template-columns: 50% 50%;
-  grid-template-rows: 1fr auto;
-  font-family: "iA Writer Duospace", Courier, monospace; }
+  font-family: "iA Writer Duospace", Courier, monospace;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column; }
 
 section {
   background-color: #1572b6;
@@ -50,7 +54,8 @@ kbd {
   font-size: 1.2em;
   border: 1px solid;
   border-radius: 0.3em;
-  padding: 0.2em 0.5em; }
+  padding: 0.2em 0.5em;
+  line-height: 1.9; }
 
 progress {
   grid-column: span 2;
@@ -70,6 +75,9 @@ progress::-moz-progress-bar {
   background: #1572b6; }
 
 .digits {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -80,26 +88,17 @@ progress::-moz-progress-bar {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  grid-row: 1 / 2; }
-
-.min {
-  grid-column: 1 / 2; }
-
-.sec {
-  grid-column: 2 / 3; }
+  margin-bottom: 2em; }
 
 .clock {
   font-family: "Gilbert", Arial, sans-serif;
-  font-size: 70vh;
-  line-height: 0.75; }
+  line-height: 0.75;
+  font-size: 50vmin; }
 
 .label {
   font-size: 3vw;
   color: #1572b6;
   text-align: center; }
-
-.docs {
-  grid-column: span 2; }
 
 .docs p {
   font-size: 1em;
@@ -125,3 +124,25 @@ img {
 
 .hidden {
   display: none; }
+
+@media screen and (min-aspect-ratio: 9 / 7) {
+  @supports (display: grid) {
+    body {
+      display: grid;
+      grid-template-columns: 50% 50%;
+      grid-template-rows: 1fr auto; }
+    .clock {
+      font-size: calc(2em + 50vmin); }
+    .digits {
+      grid-row: 1 / 2;
+      margin-bottom: initial; }
+    .min {
+      grid-column: 1 / 2; }
+    .sec {
+      grid-column: 2 / 3; }
+    .docs {
+      grid-column: span 2; } } }
+
+@media screen and (min-aspect-ratio: 8 / 5) {
+  .clock {
+    font-size: 70vh; } }
