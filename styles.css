@@ -27,7 +27,7 @@ html {
 body {
   height: 100%;
   text-align: center;
-  font-family: "iA Writer Duospace", Courier, monospace;
+  font-family: "iA Writer Duospace", "iA Writer Duospace Regular", Courier, monospace;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -91,7 +91,7 @@ progress::-moz-progress-bar {
   margin-bottom: 2em; }
 
 .clock {
-  font-family: "Gilbert", Arial, sans-serif;
+  font-family: "Gilbert", "Gilbert Color Bold Preview5", Arial, sans-serif;
   line-height: 0.75;
   font-size: 50vmin; }
 
