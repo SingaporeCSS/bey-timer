@@ -183,7 +183,7 @@
       return togglePausePlay();
     }
 
-    if (e.target && e.target.tagName !== 'INPUT') {
+    if (e.target && e.target.tagName !== 'INPUT' && e.target.className !== 'clock info') {
       return togglePausePlay();
     }
   });

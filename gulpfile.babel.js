@@ -1,9 +1,12 @@
 const gulp        = require('gulp');
 const browserSync = require('browser-sync');
-const sass        = require('gulp-sass');
-const prefix      = require('gulp-autoprefixer');
+const sass        = require('@selfisekai/gulp-sass');
+const postcss     = require('gulp-postcss');
+const prefix      = require('autoprefixer');
 const concat      = require('gulp-concat');
 const babel       = require('gulp-babel');
+
+sass.compiler = require('sass');
 
 const startServer = (done) => {
   browserSync.init({
@@ -29,12 +32,15 @@ const compileScripts = () => {
 }
 
 const compileStyles = () => {
+  const plugins = [
+    prefix()
+  ]
   return gulp.src('scss/styles.scss')
   .pipe(sass({
     includePaths: ['scss'],
     onError: browserSync.notify
   }))
-  .pipe(prefix(['last 3 versions'], { cascade: true }))
+  .pipe(postcss(plugins))
   .pipe(gulp.dest('./'))
   .pipe(browserSync.reload({ stream:true }))
 }
